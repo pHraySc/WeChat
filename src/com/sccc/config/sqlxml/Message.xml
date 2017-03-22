@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+       Copyright 2009-2016 the original author or authors.
+
+       Licensed under the Apache License, Version 2.0 (the "License");
+       you may not use this file except in compliance with the License.
+       You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+       Unless required by applicable law or agreed to in writing, software
+       distributed under the License is distributed on an "AS IS" BASIS,
+       WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       See the License for the specific language governing permissions and
+       limitations under the License.
+
+-->
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Message"><!-- 不同的namespace下相同的ID是可以的,并且namespace是必须的 -->
+
+<!-- 
+	1.type指定java的entity类
+	2.这里的id跟下面查询标签的id不会相互冲突
+ -->
+  <resultMap type="com.sccc.bean.Message" id="MessageResult">
+  <!-- 
+  	1.主键用id标签
+  	2.其他属性用result的标签
+   -->
+    <id column="ID" jdbcType="INTEGER" property="id"/>
+    <result column="COMMAND" jdbcType="VARCHAR" property="command"/>
+    <result column="DESCRIPTION" jdbcType="VARCHAR" property="description"/>
+    <result column="CONTENT" jdbcType="VARCHAR" property="content"/>
+  </resultMap>
+
+  <select id="queryMessageList" parameterType="com.sccc.bean.Message" resultMap="MessageResult">
+  SELECT ID,COMMAND,DESCRIPTION,CONTENT FROM MESSAGE WHERE 1=1
+  <if test="command != null and !&quot;&quot;.equals(command.trim())">and COMMAND = #{command}
+  </if>
+  <if test="description != null and !&quot;&quot;.equals(description.trim())">and DESCRIPTION like '%' #{description} '%'
+  </if>
+  </select>
+
+  <!-- <select id="version" parameterType="long" resultType="int">
+    SELECT version FROM user WHERE id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <delete id="delete" parameterType="UserAlias">
+    DELETE FROM user WHERE id = #{id:INTEGER}
+  </delete>
+
+  <insert id="insert" parameterType="UserAlias" useGeneratedKeys="false">
+    INSERT INTO user
+    ( id,
+    username,
+    password,
+    administrator
+    )
+    VALUES
+    ( #{id},
+    #{username,jdbcType=VARCHAR},
+    #{password.encrypted:VARCHAR},
+    #{administrator,jdbcType=BOOLEAN}
+    )
+  </insert>
+
+  <update id="update" parameterType="UserAlias">
+    UPDATE user SET
+    username = #{username,jdbcType=VARCHAR},
+    password = #{password.encrypted,jdbcType=VARCHAR},
+    administrator = #{administrator,jdbcType=BOOLEAN}
+    WHERE
+    id = #{id,jdbcType=INTEGER}
+  </update> -->
+
+  <!--   Unique constraint check -->
+ <!--  <select id="isUniqueUsername" parameterType="map" resultType="boolean">
+    SELECT (count(*) = 0)
+    FROM user
+    WHERE ((#{userId,jdbcType=BIGINT} IS NOT NULL AND id != #{userId,jdbcType=BIGINT}) OR #{userId,jdbcType=BIGINT} IS
+    NULL)  --> <!-- other than me -->
+    <!-- AND (username = #{username,jdbcType=VARCHAR})
+  </select> -->
+</mapper>
