@@ -38,13 +38,18 @@
   </resultMap>
 
   <select id="queryMessageList" parameterType="com.sccc.bean.Message" resultMap="MessageResult">
-  SELECT ID,COMMAND,DESCRIPTION,CONTENT FROM MESSAGE WHERE 1=1
-  <if test="command != null and !&quot;&quot;.equals(command.trim())">and COMMAND = #{command}
-  </if>
-  <if test="description != null and !&quot;&quot;.equals(description.trim())">and DESCRIPTION like '%' #{description} '%'
-  </if>
+  SELECT ID,COMMAND,DESCRIPTION,CONTENT FROM MESSAGE
+  <where>
+  	<if test="command != null and !&quot;&quot;.equals(command.trim())">and COMMAND = #{command}
+  	</if>
+  	<if test="description != null and !&quot;&quot;.equals(description.trim())">and DESCRIPTION like '%' #{description} '%'
+  	</if>
+  </where>
   </select>
 
+	<delete id="deleteOne" parameterType="int">
+		delete from MESSAGE where ID = #{_parameter}
+	</delete>
   <!-- <select id="version" parameterType="long" resultType="int">
     SELECT version FROM user WHERE id = #{id,jdbcType=INTEGER}
   </select>

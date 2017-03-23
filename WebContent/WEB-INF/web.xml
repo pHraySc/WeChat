@@ -1,23 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
-	http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
-	<jsp-config>
-		<taglib>
-			<taglib-uri>http://java.sun.com/jstl/core</taglib-uri>
-			<taglib-location>/WEB-INF/c.tld</taglib-location>
-		</taglib>
-	</jsp-config>
-	<servlet>
-		<!-- 类名 -->
-		<servlet-name>ListServlet</servlet-name>
-		<!-- 所在的包 -->
-		<servlet-class>com.sccc.servlet.ListServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>ListServlet</servlet-name>
-		<!-- 访问的网址 -->
-		<url-pattern>/ListServlet.action</url-pattern>
-	</servlet-mapping>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:jsp="http://java.sun.com/xml/ns/javaee/jsp" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
+  <jsp-config>
+    <taglib>
+      <taglib-uri>http://java.sun.com/jstl/core</taglib-uri>
+      <taglib-location>/WEB-INF/c.tld</taglib-location>
+    </taglib>
+  </jsp-config>
+  <servlet>
+    <servlet-name>ListServlet</servlet-name>
+    <servlet-class>com.sccc.servlet.ListServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ListServlet</servlet-name>
+    <url-pattern>/List.action</url-pattern>
+  </servlet-mapping>
+  
+  
+  <servlet>
+    <servlet-name>DeleteOne</servlet-name>
+    <servlet-class>com.sccc.servlet.DeleteOneServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DeleteOne</servlet-name>
+    <url-pattern>/DeleteOne.action</url-pattern>
+  </servlet-mapping>
 </web-app>
