@@ -67,6 +67,7 @@ public class MessageDao {
 			sqlSession.delete("Message.deleteOne", id);//通过ID调用
 			//获取执行SQL语句的结果
 			sqlSession.commit();
+			//提交
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -76,10 +77,30 @@ public class MessageDao {
 			}
 		}
 	}
-	public static void main(String[] args) {
-		MessageDao dao = new MessageDao();
-		dao.deleteOne(2);
+	
+	public void deleteBatch(List<Integer> idList) {
+		DBAccess access = new DBAccess();
+		SqlSession sqlSession = null;
+		try {
+			sqlSession = access.getSqlSession();
+			//通过sqlSession执行SQL语句
+			sqlSession.delete("Message.deleteBatch", idList);//通过ID调用
+			//获取执行SQL语句的结果
+			sqlSession.commit();
+			//提交
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally{
+			if(sqlSession != null){
+			sqlSession.close();		//最终关掉SqlSession
+			}
+		}
 	}
+//	public static void main(String[] args) {
+//		MessageDao dao = new MessageDao();
+//		dao.deleteOne(2);
+//	}
 	/**
 	 * 根据消息条件查询消息列表
 	 * 

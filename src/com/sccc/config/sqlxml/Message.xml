@@ -50,6 +50,14 @@
 	<delete id="deleteOne" parameterType="int">
 		delete from MESSAGE where ID = #{_parameter}
 	</delete>
+	
+	<delete id="deleteBatch" parameterType="java.util.List">
+		delete from MESSAGE where ID in(
+			<foreach collection="list" item="item" separator=","><!-- mybatis中的拼接属性 -->
+				#{item}
+			</foreach>
+		)
+	</delete>
   <!-- <select id="version" parameterType="long" resultType="int">
     SELECT version FROM user WHERE id = #{id,jdbcType=INTEGER}
   </select>

@@ -14,8 +14,6 @@
     <servlet-name>ListServlet</servlet-name>
     <url-pattern>/List.action</url-pattern>
   </servlet-mapping>
-  
-  
   <servlet>
     <servlet-name>DeleteOne</servlet-name>
     <servlet-class>com.sccc.servlet.DeleteOneServlet</servlet-class>
@@ -23,5 +21,23 @@
   <servlet-mapping>
     <servlet-name>DeleteOne</servlet-name>
     <url-pattern>/DeleteOne.action</url-pattern>
+  </servlet-mapping>
+  
+   <servlet>
+    <servlet-name>DeleteBatch</servlet-name>
+    <servlet-class>com.sccc.servlet.DeleteBatchServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DeleteBatch</servlet-name>
+    <url-pattern>/DeleteBatch.action</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>InitTalkServlet</servlet-name>
+    <servlet-class>com.sccc.servlet.InitTalkServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>InitTalkServlet</servlet-name>
+    <url-pattern>/InitTalkServlet.action</url-pattern>
   </servlet-mapping>
 </web-app>
